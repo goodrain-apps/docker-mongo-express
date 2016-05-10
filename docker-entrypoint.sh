@@ -13,4 +13,6 @@ export ME_CONFIG_BASICAUTH_USERNAME=${ME_USER:-""}
 export ME_CONFIG_BASICAUTH_PASSWORD=${ME_PASS:-""}
 export VCAP_APP_HOST="0.0.0.0"
 
+sleep 1000
+
 exec "$@"
