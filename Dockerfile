@@ -35,4 +35,8 @@ WORKDIR /node_modules/mongo-express
 
 RUN cp config.default.js config.js
 
-CMD ["tini", "--", "node", "app"]
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+CMD ["tini", "-s","--", "node", "app"]
