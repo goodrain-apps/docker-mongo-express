@@ -4,6 +4,10 @@ EXPOSE 8081
 
 ENV MONGO_EXPRESS 0.30.54
 
+
+RUN apt-get update && apt-get install -y netcat-openbsd &&\
+    rm -rf /var/lib/apt/lists/*
+
 RUN npm install mongo-express@$MONGO_EXPRESS
 
 WORKDIR /node_modules/mongo-express
