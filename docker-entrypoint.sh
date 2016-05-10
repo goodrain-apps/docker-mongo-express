@@ -13,6 +13,12 @@ export ME_CONFIG_BASICAUTH_USERNAME=${ME_USER:-""}
 export ME_CONFIG_BASICAUTH_PASSWORD=${ME_PASS:-""}
 export VCAP_APP_HOST="0.0.0.0"
 
-sleep 1000
+for i in {30..0}; do
+  if nc -w 1  -v $MONGO_HOST $MONGO_PORT; then
+  break
+  fi
+  echo 'Waiting Mongodb start...'
+  sleep 1
+done
 
-node app
+exec "$@"
