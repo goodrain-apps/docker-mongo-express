@@ -10,14 +10,13 @@ RUN apt-get update && apt-get install -y netcat-openbsd &&\
 
 RUN npm install mongo-express@$MONGO_EXPRESS
 
+WORKDIR /node_modules/mongo-express
 
 RUN cp config.default.js config.js
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh && \
     chmod +x /usr/local/bin/docker-entrypoint.sh
-
-WORKDIR /node_modules/mongo-express
 
 EXPOSE 8081
 
